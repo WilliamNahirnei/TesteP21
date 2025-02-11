@@ -9,6 +9,7 @@
       "psr-4": {
         "Config\\": "Config",
         "Server\\": "Server",
+        "DatabaseConnection\\": "DatabaseConnection",
         "Src\\": "Src"
         }
      },
