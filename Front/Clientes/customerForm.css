@@ -1,0 +1,94 @@
+/* Estilo Geral do Formulário */
+.styled-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.styled-form:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Título */
+.styled-form h2 {
+    font-size: 1.5rem;
+    color: #4B0082;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+/* Estilização dos Campos */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    color: #4B0082;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4B0082;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #6A0DAD;
+    box-shadow: 0 0 8px rgba(106, 13, 173, 0.4);
+    outline: none;
+}
+
+/* Botões */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+/* Botão Atualizar */
+.btn.info {
+    background-color: #4B0082;
+    color: white;
+}
+
+.btn.info:hover {
+    background-color: #6A0DAD;
+}
+
+/* Botão Cancelar */
+.btn.danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn.danger:hover {
+    background-color: #c0392b;
+}

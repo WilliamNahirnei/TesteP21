@@ -54,6 +54,7 @@ class Api extends AbstractApi {
      */
     public function defineEndpointList(): void {
         $this->addEndpoint(static::METHOD_GET, null, CustomerController::class, "list");
+        $this->addEndpoint(static::METHOD_GET, 'find', CustomerController::class, "find");
         $this->addEndpoint(static::METHOD_POST, null, CustomerController::class, "store");
         $this->addEndpoint(static::METHOD_PUT, null, CustomerController::class, "update");
         $this->addEndpoint(static::METHOD_DELETE, null, CustomerController::class, "delete");

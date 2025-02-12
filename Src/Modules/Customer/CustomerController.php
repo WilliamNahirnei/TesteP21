@@ -26,6 +26,21 @@ class CustomerController
         }
 
     }
+    /**
+     * @return array
+     * @throws \Throwable
+     */
+    public function find(): array
+    {
+        try {
+            $service                = new CustumerService(Request::getInstance()->getQueryParams());
+            $customer = $service->find();
+            return $customer->toArray();
+        } catch (\Throwable $error) {
+            throw $error;
+        }
+
+    }
 
     /**
      *
@@ -58,14 +73,13 @@ class CustomerController
      *
      * @return \stdClass An object representing the updated custumer.
      */
-    public function update(): Custumer {
+    public function update(): array {
         try {
 //                Response::setStatusCode(StatusCodes::HTTP_CREATED);
             Response::setResponseMessage('Cliente atualizado com sucesso!');
             $service = new CustumerService(Request::getInstance()->getQueryParams(), Request::getInstance()->getBodyParams());
-            $returnData = new \stdClass();
             $custumer = $service->update();
-            return $custumer;
+            return $custumer->toArray();
         } catch (\Throwable $error) {
             throw $error;
         }

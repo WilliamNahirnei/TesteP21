@@ -11,6 +11,11 @@ class CustumerService
         $this->bodyParams = $bodyParams;
     }
 
+    public function find()
+    {
+        $custumers = $this->findCustumerById($this->requestParams['idCustumer']);
+        return $custumers;
+    }
     public function listAll()
     {
         $custumers = Custumer::findObjects();

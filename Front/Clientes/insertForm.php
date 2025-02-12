@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/Front/Clientes/customerForm.css">
+<form id="createCustomer" class="styled-form">
+  <h2>🪄 Adicionar cliente</h2>
+
+  <div class="form-group">
+    <label for="inputNameCreate">Nome</label>
+    <input id="inputNameCreate" type="text" placeholder="Digite o nome">
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmailCreate">Email</label>
+    <input id="inputEmailCreate" type="email" placeholder="Digite o email">
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn magic-btn" id="updateButton" onClick="insertCustomer()">✨ Adicionar</button>
+  </div>
+</form>
+<script type="text/javascript" src="/Front/Clientes/CustomerCreate.js"> </script>
+
