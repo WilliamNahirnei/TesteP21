@@ -49,6 +49,7 @@ trait TraitSuportCustomer
 
         if (empty($customer)) {
             $customer = new Customer($stdCustomer->customerName, $stdCustomer->customerEmail);
+            $customer->setExternalId($stdCustomer->externalId);
             $customer->store();
         }
         return $customer;

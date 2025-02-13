@@ -1,7 +1,7 @@
-import { GenericTable } from "./GenericTable.js";
+import { GenericTable } from "../Components/GenericTable.js";
 import { getDataList } from "../Api/CustomerApi.js";
-import { deleteCustomer } from "./DeleteCustomerAction.js";
-import { constructUpdateForm } from "../Clientes/CustomerUpdate.js";
+import { deleteCustomer } from "../Components/DeleteCustomerAction.js";
+import { constructUpdateForm } from "./CustomerUpdate.js";
 
 export class CustomerTableList extends GenericTable {
     constructor(idElementToInsert, idTable) {
@@ -13,7 +13,8 @@ export class CustomerTableList extends GenericTable {
             columnList: [
                 { title: "ID", functionMountColmn: (register) => document.createTextNode(register.id) },
                 { title: "Name", functionMountColmn: (register) => document.createTextNode(register.customerName) },
-                { title: "Email", functionMountColmn: (register) => document.createTextNode(register.customerEmail) }
+                { title: "Email", functionMountColmn: (register) => document.createTextNode(register.customerEmail) },
+                { title: "Identificador Externo", functionMountColmn: (register) => document.createTextNode(register.externalId) }
             ]
         });
     }

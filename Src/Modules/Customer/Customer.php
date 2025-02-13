@@ -9,12 +9,14 @@ class Customer extends DatabaseModel
     protected ?int $id = null;
     private ?string $customerName = null;
     private ?string $customerEmail = null;
+    private ?string $externalId = null;
 
     public const TABLE_NAME = 'customer';
 
     public const COLUMN_ID = "id";
     public const COLUMN_NAME = "customerName";
     public const COLUMN_EMAIL = "customerEmail";
+    public const COLUMN_EXTERNAL_ID = "externalId";
 
     public function __construct(?string $customerName = null, ?string $customerEmail = null)
     {
@@ -36,6 +38,7 @@ class Customer extends DatabaseModel
             self::COLUMN_ID,
             self::COLUMN_NAME,
             self::COLUMN_EMAIL,
+            self::COLUMN_EXTERNAL_ID,
         ];
         return static::$columnList;
     }
@@ -126,6 +129,17 @@ class Customer extends DatabaseModel
     public function setCustomerEmail(?string $customerEmail): self
     {
         $this->customerEmail = $customerEmail;
+        return $this;
+    }
+
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?string $externalId): self
+    {
+        $this->externalId = $externalId;
         return $this;
     }
 }
