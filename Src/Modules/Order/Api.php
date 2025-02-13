@@ -61,6 +61,12 @@ class Api extends AbstractApi
             "store"
         );
         $this->addEndpoint(
+            static::METHOD_POST,
+            'importFile',
+            OrderController::class,
+            "importFile"
+        );
+        $this->addEndpoint(
             static::METHOD_PUT,
             null,
             OrderController::class,

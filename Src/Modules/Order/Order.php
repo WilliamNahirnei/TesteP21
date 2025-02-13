@@ -3,7 +3,7 @@
 namespace Src\Modules\Order;
 
 use DatabaseConnection\DatabaseModel;
-use Src\Modules\Customer\Custumer;
+use Src\Modules\Customer\Customer;
 
 class Order extends DatabaseModel
 {
@@ -14,7 +14,7 @@ class Order extends DatabaseModel
     private ?\DateTime $orderDateTime = null;
     private ?int $orderIdCustomer = null;
 
-    private ?Custumer  $custumer = null;
+    private ?Customer  $customer = null;
 
     public const TABLE_NAME = 'purchaseOrder';
 
@@ -25,9 +25,13 @@ class Order extends DatabaseModel
     public const COLUMN_ID_CUSTOMER = "orderIdCustomer";
 
     public function __construct(
-        ?string $orderObservations = null
+        ?string $orderObservations = null,
+        ?float $value = 0,
+        ?\DateTime $dateTime = null
     ) {
         $this->orderObservations = $orderObservations;
+        $this->orderTotalValue = $value;
+        $this->orderDateTime = $dateTime;
         parent::__construct();
 
     }
@@ -109,9 +113,9 @@ class Order extends DatabaseModel
 
     public function searchCustomer(bool $force = false): self
     {
-        if (is_null($this->custumer) || $force) {
-            $customer = Custumer::findById($this->getOrderIdCustomer());
-            $this->setCustumer($customer);
+        if (is_null($this->customer) || $force) {
+            $customer = Customer::findById($this->getOrderIdCustomer());
+            $this->setCustomer($customer);
         }
         return $this;
     }
@@ -166,17 +170,17 @@ class Order extends DatabaseModel
         $this->orderIdCustomer = $idCustomer;
     }
 
-    public function getCustumer(): ?Custumer
+    public function getCustomer(): ?Customer
     {
-        return $this->custumer;
+        return $this->customer;
     }
 
-    public function setCustumer(?Custumer $custumer): void
+    public function setCustomer(?Customer $customer): void
     {
-        if ($custumer instanceof Custumer) {
-            $this->setOrderIdCustomer($custumer->getId());
+        if ($customer instanceof Customer) {
+            $this->setOrderIdCustomer($customer->getId());
         }
-        $this->custumer = $custumer;
+        $this->customer = $customer;
     }
 
 

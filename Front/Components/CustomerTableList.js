@@ -12,8 +12,8 @@ export class CustomerTableList extends GenericTable {
             deleteButtonActionClick: (register) => deleteCustomer(register),
             columnList: [
                 { title: "ID", functionMountColmn: (register) => document.createTextNode(register.id) },
-                { title: "Name", functionMountColmn: (register) => document.createTextNode(register.custumerName) },
-                { title: "Email", functionMountColmn: (register) => document.createTextNode(register.custumerEmail) }
+                { title: "Name", functionMountColmn: (register) => document.createTextNode(register.customerName) },
+                { title: "Email", functionMountColmn: (register) => document.createTextNode(register.customerEmail) }
             ]
         });
     }

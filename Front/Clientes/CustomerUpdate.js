@@ -12,8 +12,8 @@ export function constructUpdateForm(customerData, idContainer, registerTable) {
             // Inserir o conteúdo HTML no contêiner
             formContainer.insertAdjacentHTML('afterbegin', html);
             // Preencher os campos do formulário com os dados do cliente
-            document.getElementById("inputName").value = customerData.custumerName ?? "";
-            document.getElementById("inputEmail").value = customerData.custumerEmail ?? "";
+            document.getElementById("inputName").value = customerData.customerName ?? "";
+            document.getElementById("inputEmail").value = customerData.customerEmail ?? "";
 
             // Adicionar eventos aos botões de ação
             document.getElementById("updateButton").addEventListener("click", function () {

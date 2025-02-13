@@ -18,7 +18,7 @@ class CustomerController
     public function list(): array
     {
         try {
-            $service                = new CustumerService();
+            $service                = new CustomerService();
             $returnData = $service->listAll();
             return self::modelListToArrayResponse($returnData);
         } catch (\Throwable $error) {
@@ -33,7 +33,7 @@ class CustomerController
     public function find(): array
     {
         try {
-            $service                = new CustumerService(Request::getInstance()->getQueryParams());
+            $service                = new CustomerService(Request::getInstance()->getQueryParams());
             $customer = $service->find();
             return $customer->toArray();
         } catch (\Throwable $error) {
@@ -46,21 +46,19 @@ class CustomerController
      *
      * Creates a customer with request data.
      *
-     * @return \stdClass An object representing the created custumer.
+     * @return \stdClass An object representing the created customer.
      */
-    public function store(): \stdClass
+    public function store(): array
     {
         try {
             Response::setStatusCode(StatusCodes::HTTP_CREATED);
             Response::setResponseMessage('Cliente cadastrado com sucesso!');
-            $service                = new CustumerService(
+            $service                = new CustomerService(
                 null,
                 Request::getInstance()
                        ->getBodyParams()
             );
-            $returnData             = new \stdClass();
-            $returnData->idCustomer = $service->store()->getId();
-            return $returnData;
+            return $service->store()->toArray();
         } catch (\Throwable $error) {
             throw $error;
         }
@@ -71,15 +69,14 @@ class CustomerController
      *
      * Update a customer with request data.
      *
-     * @return \stdClass An object representing the updated custumer.
+     * @return \stdClass An object representing the updated customer.
      */
     public function update(): array {
         try {
-//                Response::setStatusCode(StatusCodes::HTTP_CREATED);
             Response::setResponseMessage('Cliente atualizado com sucesso!');
-            $service = new CustumerService(Request::getInstance()->getQueryParams(), Request::getInstance()->getBodyParams());
-            $custumer = $service->update();
-            return $custumer->toArray();
+            $service = new CustomerService(Request::getInstance()->getQueryParams(), Request::getInstance()->getBodyParams());
+            $customer = $service->update();
+            return $customer->toArray();
         } catch (\Throwable $error) {
             throw $error;
         }
@@ -89,7 +86,7 @@ class CustomerController
     {
         try {
             Response::setResponseMessage('Cliente deletado com sucesso!');
-            $service = new CustumerService(Request::getInstance()->getQueryParams());
+            $service = new CustomerService(Request::getInstance()->getQueryParams());
             $returnData = new \stdClass();
             $returnData->idCustomer = $service->delete()->getId();
             return $returnData;

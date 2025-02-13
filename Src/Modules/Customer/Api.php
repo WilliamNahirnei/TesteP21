@@ -9,7 +9,7 @@ use Server\Routing\AbstractApi;
  * This class defines the API endpoints for the "customer" module.
  * It extends the AbstractApi class and configures endpoints with their respective HTTP methods, controllers, and authentication.
  *
- * @package Src\Modules\Custumer
+ * @package Src\Modules\Customer
  * @author William Nahirnei Lopes
  */
 class Api extends AbstractApi {

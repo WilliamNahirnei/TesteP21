@@ -4,22 +4,22 @@ namespace Src\Modules\Customer;
 
 
 use DatabaseConnection\DatabaseModel;
-class Custumer extends DatabaseModel
+class Customer extends DatabaseModel
 {
     protected ?int $id = null;
-    private ?string $custumerName = null;
-    private ?string $custumerEmail = null;
+    private ?string $customerName = null;
+    private ?string $customerEmail = null;
 
-    public const TABLE_NAME = 'custumer';
+    public const TABLE_NAME = 'customer';
 
     public const COLUMN_ID = "id";
-    public const COLUMN_NAME = "custumerName";
-    public const COLUMN_EMAIL = "custumerEmail";
+    public const COLUMN_NAME = "customerName";
+    public const COLUMN_EMAIL = "customerEmail";
 
-    public function __construct(?string $custumerName = null, ?string $custumerEmail = null)
+    public function __construct(?string $customerName = null, ?string $customerEmail = null)
     {
-        $this->custumerName = $custumerName;
-        $this->custumerEmail = $custumerEmail;
+        $this->customerName  = $customerName;
+        $this->customerEmail = $customerEmail;
         parent::__construct();
 
     }
@@ -107,25 +107,25 @@ class Custumer extends DatabaseModel
         return $this;
     }
 
-    public function getCustumerName(): ?string
+    public function getCustomerName(): ?string
     {
-        return $this->custumerName;
+        return $this->customerName;
     }
 
-    public function setCustumerName(?string $custumerName): self
+    public function setCustomerName(?string $customerName): self
     {
-        $this->custumerName = $custumerName;
+        $this->customerName = $customerName;
         return $this;
     }
 
-    public function getCustumerEmail(): ?string
+    public function getCustomerEmail(): ?string
     {
-        return $this->custumerEmail;
+        return $this->customerEmail;
     }
 
-    public function setCustumerEmail(?string $custumerEmail): self
+    public function setCustomerEmail(?string $customerEmail): self
     {
-        $this->custumerEmail = $custumerEmail;
+        $this->customerEmail = $customerEmail;
         return $this;
     }
 }

@@ -34,7 +34,7 @@ export function storeCustomerApi(customerData = {}) {
         return
     }
     const response = JSON.parse(request.response);
-    window.location.reload();
+    return response;
 }
 
 export function updateCustomerApi(idCustomer, customerData = {}) {

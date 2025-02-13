@@ -16,5 +16,9 @@
     <button type="button" class="btn magic-btn" id="updateButton" onClick="insertCustomer()">✨ Adicionar</button>
   </div>
 </form>
-<script type="text/javascript" src="/Front/Clientes/CustomerCreate.js"> </script>
+<script type="module">
+    import { insertCustomer } from "/Front/Clientes/CustomerCreate.js";
+
+    document.getElementById("updateButton").addEventListener('click', insertCustomer);
+</script>
 

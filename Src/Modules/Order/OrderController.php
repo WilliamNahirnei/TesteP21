@@ -56,6 +56,33 @@ class OrderController
 
     /**
      *
+     * Creates a product with request data.
+     *
+     * @return \stdClass An object representing the created product.
+     */
+    public function importFile(): \stdClass
+    {
+        try {
+            Response::setStatusCode(StatusCodes::HTTP_CREATED);
+            Response::setResponseMessage('Pedidos criados com sucesso!');
+            $service                = new OrderService(
+                null,
+                Request::getInstance()
+                       ->getBodyParams()
+            );
+            $returnData             = new \stdClass();
+            $service->importFile();
+//            $returnData->idOrder = $service->store()->getId();
+            $returnData->idOrder = 0;
+            return $returnData;
+        } catch (\Throwable $error) {
+            throw $error;
+        }
+
+    }
+
+    /**
+     *
      * Update a product with request data.
      *
      * @return \stdClass An object representing the updated product.

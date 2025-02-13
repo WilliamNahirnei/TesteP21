@@ -2,9 +2,12 @@
 
 namespace Src\Modules\Order;
 
+use Src\Suport\TraitSuportXlSX;
+
 class OrderService
 {
     use TraitSuportOrder;
+    use TraitSuportXlSX;
     public function __construct($requestParams = [], $bodyParams = [])
     {
         $this->requestParams = $requestParams;
@@ -22,6 +25,12 @@ class OrderService
         $order = $this->arrayDataToOrder();
         $order->store();
         return $order;
+    }
+    public function importFile()
+    {
+        $fileData = $this->XLSXBase64ToArray($this->bodyParams['base64File']);
+        $listOrderStd = $this->xlsDataToStd($fileData);
+        $this->insertOrdersStdList($listOrderStd);
     }
 
     public function update(): Order
