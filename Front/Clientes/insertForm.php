@@ -12,7 +12,7 @@
     <input id="inputEmailCreate" type="email" placeholder="Digite o email">
   </div>
   <div class="form-group">
-    <label for="inputLocationCreate">Email</label>
+    <label for="inputLocationCreate">Localização</label>
     <input id="inputLocationCreate" type="text" placeholder="Digite a localização">
   </div>
 

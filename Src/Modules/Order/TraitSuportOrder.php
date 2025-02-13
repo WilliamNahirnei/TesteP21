@@ -106,6 +106,7 @@ trait TraitSuportOrder
             $orderStd->dateOrder,
         );
         $order->setOrderLocation($orderStd->location);
+        $order->setOrderStatus('entregue');
 
         return $order;
     }

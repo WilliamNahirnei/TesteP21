@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-        <label for="inputCustomer">Status</label>
+        <label for="inputCustomer">Cliente</label>
         <select id="inputCustomer">
         </select>
     </div>

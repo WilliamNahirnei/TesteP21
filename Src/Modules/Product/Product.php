@@ -116,7 +116,7 @@ class Product extends DatabaseModel
     private function validateOrders()
     {
         if ($this->haveOrders()) {
-            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Não foi possivel deletar o produto, existem ordens vinculadas"], StatusCodes::HTTP_BAD_REQUEST);
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Não foi possivel deletar o produto, existem pedidos vinculadas"], StatusCodes::HTTP_BAD_REQUEST);
 
         }
     }

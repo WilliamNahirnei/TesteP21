@@ -126,14 +126,14 @@ class Customer extends DatabaseModel
     private function validateOrders()
     {
         if ($this->haveOrders()) {
-            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Não foi possivel deletar o cliente, existem ordens vinculadas a ele"], StatusCodes::HTTP_BAD_REQUEST);
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Não foi possivel deletar o cliente, existem pedidos vinculadas a ele"], StatusCodes::HTTP_BAD_REQUEST);
         }
     }
     private function haveOrders()
     {
         $order = Order::findOne(
             null,
-            [new Join('inner', Order::TABLE_NAME, self::TABLE_NAME . '.id', '=', Order::TABLE_NAME . '.' . Order::COLUMN_ID_CUSTOMER),],
+            [new Join('inner', Customer::TABLE_NAME, self::TABLE_NAME . '.id', '=', Order::TABLE_NAME . '.' . Order::COLUMN_ID_CUSTOMER),],
             [new WhereCondition(Order::COLUMN_ID_CUSTOMER, "=", $this->id)]
         );
         return !empty($order);

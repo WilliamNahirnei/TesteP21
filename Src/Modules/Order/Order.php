@@ -124,7 +124,7 @@ class Order extends DatabaseModel
     private function validateValue()
     {
         if (!empty($this->orderTotalValue) && $this->orderTotalValue < 0) {
-            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Valor total da ordem não pode sermenor que zero"], StatusCodes::HTTP_BAD_REQUEST);
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Valor total do pedido não pode sermenor que zero"], StatusCodes::HTTP_BAD_REQUEST);
         }
     }
 
