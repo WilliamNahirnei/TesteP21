@@ -62,7 +62,6 @@ class ProductController
      */
     public function update(): Product {
         try {
-            //                Response::setStatusCode(StatusCodes::HTTP_CREATED);
             Response::setResponseMessage('Produto atualizado com sucesso!');
             $service = new ProductService(Request::getInstance()->getQueryParams(), Request::getInstance()->getBodyParams());
             $returnData = new \stdClass();

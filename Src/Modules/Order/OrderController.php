@@ -72,7 +72,6 @@ class OrderController
             );
             $returnData             = new \stdClass();
             $service->importFile();
-//            $returnData->idOrder = $service->store()->getId();
             $returnData->idOrder = 0;
             return $returnData;
         } catch (\Throwable $error) {

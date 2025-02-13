@@ -3,9 +3,11 @@ export function insertCustomer(){
 
     const name = document.getElementById("inputNameCreate").value
     const email = document.getElementById("inputEmailCreate").value
+    const location = document.getElementById("inputLocationCreate").value
     const customerData = {
-        "name": name,
-        "email": email,
+        name,
+        email,
+        location,
     }
 
     const response = storeCustomerApi(customerData)

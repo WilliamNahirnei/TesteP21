@@ -11,6 +11,10 @@
     <label for="inputEmail">Email</label>
     <input id="inputEmail" type="email" placeholder="Digite o email">
   </div>
+    <div class="form-group">
+    <label for="inputLocation">Email</label>
+    <input id="inputLocation" type="email" placeholder="Digite a localização">
+  </div>
 
   <div class="form-actions">
     <button type="button" class="btn magic-btn" id="updateButton">✨ Atualizar</button>

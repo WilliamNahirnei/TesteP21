@@ -3,6 +3,9 @@
 namespace Src\Modules\Product;
 
 use DatabaseConnection\DatabaseModel;
+use Server\Constants\ApiExceptionTypes;
+use Server\Constants\StatusCodes;
+use Server\Errors\ApiException;
 
 class Product extends DatabaseModel
 {
@@ -78,7 +81,7 @@ class Product extends DatabaseModel
     private function validateId()
     {
         if (empty($this->id)) {
-            //Lancar erro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Entidade produto sem id preenchido para seguir com a ação"], StatusCodes::HTTP_BAD_REQUEST);
         }
     }
 
@@ -90,18 +93,18 @@ class Product extends DatabaseModel
     private function validateName()
     {
         if (!is_string($this->productName) || empty(trim($this->productName))) {
-            //Lancar erro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Nome do produto é obrigatorio"], StatusCodes::HTTP_BAD_REQUEST);
         }
     }
 
     private function validateValue()
     {
         if (empty($this->productValue)){
-            //Lancar erro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Valor do produto é obrigatorio"], StatusCodes::HTTP_BAD_REQUEST);
         }
 
         if ($this->productValue < 0) {
-            //lancar erro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Valor do produto não pode ser menor que zero"], StatusCodes::HTTP_BAD_REQUEST);
         }
     }
 
@@ -113,7 +116,8 @@ class Product extends DatabaseModel
     private function validateOrders()
     {
         if ($this->haveOrders()) {
-            //lancarErro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Não foi possivel deletar o produto, existem ordens vinculadas"], StatusCodes::HTTP_BAD_REQUEST);
+
         }
     }
     private function haveOrders()

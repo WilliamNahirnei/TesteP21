@@ -2,6 +2,10 @@
 
 namespace Src\Modules\Product;
 
+use Server\Constants\ApiExceptionTypes;
+use Server\Constants\StatusCodes;
+use Server\Errors\ApiException;
+
 trait TraitSuportProduct
 {
     protected function arrayDataToProduct(): Product
@@ -27,7 +31,7 @@ trait TraitSuportProduct
     {
         $product = Product::findById($idProduct);
         if (empty($product)) {
-            //LancarErro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Produto não encontrado"], StatusCodes::HTTP_NOT_FOUND);
         }
         return $product;
     }

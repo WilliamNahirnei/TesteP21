@@ -8,8 +8,10 @@ export async function uploadFile() {
 
     const file = fileInput.files[0];
     let base64 = null;
+    let fileExtension = null;
     if (file) {
         try {
+            fileExtension = getFileExtension(file.name);
             base64 = await convertFileToBase64(file);
         } catch (error) {
             console.error("Erro ao converter para Base64:", error);
@@ -19,10 +21,15 @@ export async function uploadFile() {
     if (base64 != null) {
 
         const contentUpload = {
+            fileExtension,
             base64File: base64
         }
         uploadOrdersFile(contentUpload)
     }
+}
+
+function getFileExtension(filename) {
+    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename)[0] : undefined;
 }
 
 function convertFileToBase64(file) {

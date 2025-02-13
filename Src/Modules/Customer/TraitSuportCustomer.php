@@ -3,15 +3,21 @@
 namespace Src\Modules\Customer;
 
 use DatabaseConnection\WhereCondition;
+use Server\Constants\ApiExceptionTypes;
+use Server\Constants\StatusCodes;
+use Server\Errors\ApiException;
 
 trait TraitSuportCustomer
 {
     protected function arrayDataToCustomer(): Customer
     {
-        return new Customer(
+        $customer = new Customer(
             $this->bodyParams['name'],
             $this->bodyParams['email']
         );
+        $customer->setCustomerLocation($this->bodyParams['location']);
+
+        return $customer;
     }
     protected function getCustomerToUpdate(int $idCustomer): Customer
     {
@@ -22,6 +28,9 @@ trait TraitSuportCustomer
         if (!empty($this->bodyParams['email'])) {
             $customer->setCustomerEmail($this->bodyParams['email']);
         }
+        if (!empty($this->bodyParams['location'])) {
+            $customer->setCustomerLocation($this->bodyParams['location']);
+        }
         return $customer;
     }
 
@@ -29,7 +38,7 @@ trait TraitSuportCustomer
     {
         $customer = Customer::findById($idCustomer);
         if (empty($customer)) {
-            //LancarErro
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Cliente não encontrado"], StatusCodes::HTTP_NOT_FOUND);
         }
         return $customer;
     }
@@ -37,6 +46,11 @@ trait TraitSuportCustomer
     protected function findOrInsertCustomerByStd(\stdClass $stdCustomer): ?Customer
     {
         $customer = null;
+        if ($stdCustomer->externalId) {
+            $whereExternalId = new WhereCondition(Customer::COLUMN_EXTERNAL_ID, "=", $stdCustomer->externalId);
+            $customer = Customer::findOne(null, [], [$whereExternalId]);
+        }
+
         if ($stdCustomer->customerEmail) {
             $whereEmail = new WhereCondition(Customer::COLUMN_EMAIL, "=", $stdCustomer->customerEmail);
             $customer = Customer::findOne(null, [], [$whereEmail]);
@@ -50,6 +64,7 @@ trait TraitSuportCustomer
         if (empty($customer)) {
             $customer = new Customer($stdCustomer->customerName, $stdCustomer->customerEmail);
             $customer->setExternalId($stdCustomer->externalId);
+            $customer->setCustomerLocation($stdCustomer->location);
             $customer->store();
         }
         return $customer;

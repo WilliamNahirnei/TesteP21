@@ -10,5 +10,7 @@
 <?php include '../header.php'; ?>
 <main>
     <section>
+        <?php include 'orderTable.php'; ?>
+        <?php include 'createForm.php'; ?>
     </section>
 </main>

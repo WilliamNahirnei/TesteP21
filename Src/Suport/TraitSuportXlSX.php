@@ -2,6 +2,10 @@
 
 namespace Src\Suport;
 
+use Server\Constants\ApiExceptionTypes;
+use Server\Constants\StatusCodes;
+use Server\Errors\ApiException;
+
 trait TraitSuportXlSX
 {
     function XLSXBase64ToArray($base64File): \stdClass
@@ -18,7 +22,8 @@ trait TraitSuportXlSX
         // Decodifica o Base64
         $fileData = base64_decode($base64File);
         if (!$fileData) {
-//            "Falha ao decodificar o Base64."
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Erro ao decodificar o arquivo"], StatusCodes::HTTP_INTERNAL_SERVER_ERROR);
+
         }
 
         // Salva o arquivo temporariamente
@@ -31,7 +36,7 @@ trait TraitSuportXlSX
             $zip->extractTo(sys_get_temp_dir() . "/xlsx_extracted");
             $zip->close();
         } else {
-//            "Falha ao extrair o arquivo ZIP."
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Erro ao processar o arquivo"], StatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         $extractPath = sys_get_temp_dir() . "/xlsx_extracted/";
@@ -48,7 +53,7 @@ trait TraitSuportXlSX
         // Lê a planilha principal `xl/worksheets/sheet1.xml`
         $sheetFile = $extractPath . "xl/worksheets/sheet1.xml";
         if (!file_exists($sheetFile)) {
-            //Arquivo da planilha não encontrado."
+            throw new ApiException(true, ApiExceptionTypes::ERROR, ["Erro ao processar arquivo"], StatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         // Remove os arquivos temporários

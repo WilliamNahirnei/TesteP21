@@ -11,9 +11,13 @@
     <label for="inputEmailCreate">Email</label>
     <input id="inputEmailCreate" type="email" placeholder="Digite o email">
   </div>
+  <div class="form-group">
+    <label for="inputLocationCreate">Email</label>
+    <input id="inputLocationCreate" type="text" placeholder="Digite a localização">
+  </div>
 
   <div class="form-actions">
-    <button type="button" class="btn magic-btn" id="updateButton" onClick="insertCustomer()">✨ Adicionar</button>
+    <button type="button" class="btn magic-btn" id="updateButton"">✨ Adicionar</button>
   </div>
 </form>
 <script type="module">

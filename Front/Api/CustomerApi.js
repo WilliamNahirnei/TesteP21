@@ -4,7 +4,8 @@ export function getDataList() {
     request.send();
 
     if (request.status !== 200) {
-        alert("Erro ao buscar lista de clientes");
+        const apiMessage = JSON.parse(request.response).message
+        alert("Erro ao buscar lista de clientes." + apiMessage? apiMessage : "");
         return [];
     }
     return JSON.parse(request.response).data;
@@ -15,7 +16,8 @@ export function getCustomerById(idCustomer) {
     request.open("GET", `http://localhost:8000/customer/find?idCustumer=${idCustomer}`, false);
     request.send();
     if (request.status != 200) {
-        alert("Erro ao buscar o cliente.");
+        const apiMessage = JSON.parse(request.response).message
+        alert("Erro ao buscar o cliente." + apiMessage? apiMessage : "");
         return;
     }
     const response = JSON.parse(request.response);
@@ -30,7 +32,9 @@ export function storeCustomerApi(customerData = {}) {
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(bodyRequest);
     if(request.status!=201){
-        alert("erro ao inserir cliente");
+        const apiMessage = JSON.parse(request.response).message
+        console.log(apiMessage)
+        alert("Erro ao inserir o cliente." + (apiMessage? apiMessage : ""));
         return
     }
     const response = JSON.parse(request.response);
@@ -45,7 +49,8 @@ export function updateCustomerApi(idCustomer, customerData = {}) {
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(bodyRequest);
     if (request.status != 200) {
-        alert("Erro ao atualizar o cliente.");
+        const apiMessage = JSON.parse(request.response).message
+        alert("Erro ao atualizar o cliente." + apiMessage? apiMessage : "");
         return;
     }
     const response = JSON.parse(request.response);
@@ -57,7 +62,8 @@ export function deleteCustomerApi(idCustomer){
     request.open("DELETE", `http://localhost:8000/customer?idCustumer=${idCustomer}`, false)
     request.send()
     if(request.status!=200){
-        alert("erro ao deletar")
+        const apiMessage = JSON.parse(request.response).message
+        alert("Erro ao excluir cliente." + apiMessage? apiMessage : "");
         return
     }
     const response = JSON.parse(request.response)

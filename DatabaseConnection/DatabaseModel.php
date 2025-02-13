@@ -6,6 +6,7 @@ use stdClass;
 abstract class DatabaseModel {
     protected static $table_name = '';
     protected static $columnList = [];
+    protected static $modelList = [];
     protected ?int $id;
 
     public function __construct() {
@@ -16,6 +17,9 @@ abstract class DatabaseModel {
     protected abstract static function defineTableName(): string;
 
     protected abstract static function defineColumnList(): array;
+    protected static function defineRelationalModelsName(): array {
+        return [];
+    }
 
     public function create() {
         static::defineTableName();
@@ -76,7 +80,7 @@ abstract class DatabaseModel {
     public function toArray() {
         $arrayObject = [];
         $arrayObject["id"] = $this->getId();
-        foreach (static::$columnList as $column) {
+        foreach (static::defineColumnList() as $column) {
             $methodName = 'get' . ucfirst($column);
             if (method_exists($this, $methodName)) {
                 $value = $this->$methodName();
@@ -84,6 +88,16 @@ abstract class DatabaseModel {
                     $arrayObject[$column] = $value->toArray(); // Chamada recursiva para objetos internos
                 } else {
                     $arrayObject[$column] = $value;
+                }
+            }
+        }
+
+        foreach (static::defineRelationalModelsName() as $modelName) {
+            $methodName = 'get' . ucfirst($modelName);
+            if (method_exists($this, $methodName)) {
+                $value = $this->$methodName();
+                if (is_object($value) && method_exists($value, 'toArray')) {
+                    $arrayObject[$modelName] = $value->toArray(); // Chamada recursiva para objetos internos
                 }
             }
         }
