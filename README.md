@@ -4,10 +4,12 @@
 ---
 
 ## 📥 Clonando o Repositório
+Instale o composer.
 Para começar, clone o repositório em sua máquina local:
 ```sh
 git clone git@github.com:WilliamNahirnei/loja-magica.git
 cd loja-magica
+composer dump-autoload
 ```
 
 ---
