@@ -6,7 +6,7 @@
 ## 📥 Clonando o Repositório
 Para começar, clone o repositório em sua máquina local:
 ```sh
-git clone https://github.com/WilliamNahirnei/TesteP21.git
+git clone git@github.com:WilliamNahirnei/loja-magica.git
 cd loja-magica
 ```
 
